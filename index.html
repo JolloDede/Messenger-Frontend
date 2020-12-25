@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Twitter clone</title>
+</head>
+
+<body>
+    <header>
+        <h1 class="title">Messenger</h1>
+        <div class="login">
+            <!-- <button class="button-primary" id="login-btn">Login</button> -->
+            <a class="button-primary" href="./pages/login.html">Login</a>
+        </div>
+    </header>
+    <main>
+        <div class="loading">
+            <img src="img/loading.gif" alt="">
+        </div>
+        <div class="messages">
+
+        </div>
+        <form class="form">
+            <label for="name">Name</label>
+            <input class="u-full-width" type="text" name="name" id="name">
+            <label for="message">Message</label>
+            <textarea class="u-full-width" name="message" id="message" cols="30" rows="10"></textarea>
+            <button class="button-primary" type="submit">Send</button>
+        </form>
+    </main>
+    <script src="js/client.js"></script>
+</body>
+
+</html>
