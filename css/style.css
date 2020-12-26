@@ -142,3 +142,11 @@ form .data input:focus{
   form .signup-link a:hover{
     text-decoration: underline;
   }
+
+  /* Start Login */
+
+  .login-message {
+    display: none;
+  }
+
+  /* End Login */
