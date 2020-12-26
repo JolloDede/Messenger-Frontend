@@ -13,7 +13,7 @@ form.addEventListener("submit", (event) => {
     const name = formData.get("name");
     const message = formData.get("message");
 
-    const message = {
+    const messageOb = {
         name: name,
         message: message
     };
@@ -22,7 +22,7 @@ form.addEventListener("submit", (event) => {
 
     fetch(API_URL, {
         method: "POST",
-        body: JSON.stringify(message),
+        body: JSON.stringify(messageOb),
         headers: {
             'content-type': 'application/json'
         }
