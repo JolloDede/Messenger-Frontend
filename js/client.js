@@ -24,7 +24,8 @@ form.addEventListener("submit", (event) => {
         method: "POST",
         body: JSON.stringify(messageOb),
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'authorization': 'Bearer ' + localStorage.token
         }
     }).then(response => response.json())
         .then(createdMessage => {
@@ -34,13 +35,18 @@ form.addEventListener("submit", (event) => {
         });
 });
 
-function listAllMessages(){
+function listAllMessages() {
     messagesElement.innerHTML = '';
-    fetch(API_URL)
-        .then(response => response.json())
+    fetch(API_URL, {
+        method: "GET",
+        headers: {
+            'content-type': 'application/json',
+            'authorization': 'Bearer ' + localStorage.token
+        }
+    }).then(response => response.json())
         .then(messages => {
             messages.reverse();
-            messages.forEach(message =>{
+            messages.forEach(message => {
                 const wrapper = document.createElement("div");
                 wrapper.classList.add("message");
 
