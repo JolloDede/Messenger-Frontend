@@ -30,6 +30,7 @@ form.addEventListener("submit", (event) => {
     });
   }).then((result) => {
     localStorage.token = result.token;
+    console.log(result.username);
     registered = true;
   }).catch((error) => {
     loginMsg.style.display = "initial";
