@@ -10,23 +10,21 @@ form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const formData = new FormData(form);
-    const name = formData.get("name");
     const message = formData.get("message");
-
     const messageOb = {
-        name: name,
-        message: message
+        message: message.toString()
     };
+
     form.style.display = "none";
     loadingEle.style.display = "";
 
     fetch(API_URL, {
         method: "POST",
-        body: JSON.stringify(messageOb),
         headers: {
-            'content-type': 'application/json',
+            'Content-Type': 'application/json',
             'authorization': 'Bearer ' + localStorage.token
-        }
+        },
+        body: JSON.stringify(messageOb)
     }).then(response => response.json())
         .then(createdMessage => {
             form.reset();
@@ -51,14 +49,14 @@ function listAllMessages() {
                 wrapper.classList.add("message");
 
                 const div = document.createElement("div");
-                if (message.name.toUpperCase() == "me".toUpperCase()) {
+                if (message.name.toUpperCase() == localStorage.username.toUpperCase()) {
                     div.classList.add("my-message");
                 } else {
                     div.classList.add("other-message");
                 }
 
                 const header = document.createElement("h3");
-                header.textContent = message.name;
+                header.textContent = "Me";
 
                 const messageEle = document.createElement("p");
                 messageEle.classList.add("message-content");

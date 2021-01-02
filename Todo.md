@@ -4,6 +4,7 @@
 * [X] fetch with auth header
 
 ### Step
-* [ ] Save the username
-    * [ ] list messages with username = me
-* [ ] dont send username with a field
+* [X] Save the username
+    * [X] list messages with username = me
+* [X] dont send username with a field
+    * [X] make form send work
