@@ -51,6 +51,7 @@ function listAllMessages() {
             const wrapper = document.createElement("div");
             wrapper.classList.add("message");
 
+<<<<<<< HEAD
             const div = document.createElement("div");
             if (message.name.toUpperCase() == localStorage.username.toUpperCase()) {
                 div.classList.add("my-message");
@@ -64,6 +65,21 @@ function listAllMessages() {
             const messageEle = document.createElement("p");
             messageEle.classList.add("message-content");
             messageEle.textContent = message.message;
+=======
+                const div = document.createElement("div");
+                const header = document.createElement("h3");
+                if (message.name.toUpperCase() == localStorage.username.toUpperCase()) {
+                    div.classList.add("my-message");
+                    header.textContent = "Me";
+                } else {
+                    div.classList.add("other-message");
+                    header.textContent = message.name.toString();
+                }
+
+                const messageEle = document.createElement("p");
+                messageEle.classList.add("message-content");
+                messageEle.textContent = message.message;
+>>>>>>> 89db32d4d10421bc90102372706251d7dbd9f062
 
             wrapper.appendChild(div);
             div.appendChild(header);
