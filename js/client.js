@@ -50,40 +50,31 @@ function listAllMessages() {
         messages.forEach(message => {
             const wrapper = document.createElement("div");
             wrapper.classList.add("message");
-
-<<<<<<< HEAD
             const div = document.createElement("div");
+            const header = document.createElement("h3");
             if (message.name.toUpperCase() == localStorage.username.toUpperCase()) {
                 div.classList.add("my-message");
+                header.textContent = "Me";
             } else {
                 div.classList.add("other-message");
+                header.textContent = message.name.toString();
             }
-
-            const header = document.createElement("h3");
-            header.textContent = "Me";
 
             const messageEle = document.createElement("p");
             messageEle.classList.add("message-content");
             messageEle.textContent = message.message;
-=======
-                const div = document.createElement("div");
-                const header = document.createElement("h3");
-                if (message.name.toUpperCase() == localStorage.username.toUpperCase()) {
-                    div.classList.add("my-message");
-                    header.textContent = "Me";
-                } else {
-                    div.classList.add("other-message");
-                    header.textContent = message.name.toString();
-                }
 
-                const messageEle = document.createElement("p");
-                messageEle.classList.add("message-content");
-                messageEle.textContent = message.message;
->>>>>>> 89db32d4d10421bc90102372706251d7dbd9f062
+            const time = document.createElement("p");
+            time.classList.add("message-time");
+            let date = new Date(message.created);
+            let hour = (date.getHours() >= 10) ? date.getHours() : "0"+date.getHours();
+            let min = (date.getMinutes() >= 10) ? date.getMinutes() : "0"+date.getMinutes();
+            time.textContent = hour+":"+min;
 
             wrapper.appendChild(div);
             div.appendChild(header);
             div.appendChild(messageEle);
+            div.appendChild(time);
 
             messagesElement.appendChild(wrapper);
         })
