@@ -26,7 +26,7 @@ form.addEventListener("submit", (event) => {
         },
         body: JSON.stringify(messageOb)
     }).then(response => response.json())
-        .then(createdMessage => {
+        .then(() => {
             form.reset();
             listAllMessages();
             form.style.display = "";
@@ -41,33 +41,41 @@ function listAllMessages() {
             'content-type': 'application/json',
             'authorization': 'Bearer ' + localStorage.token
         }
-    }).then(response => response.json())
-        .then(messages => {
-            messages.reverse();
-            messages.forEach(message => {
-                const wrapper = document.createElement("div");
-                wrapper.classList.add("message");
+    }).then(response => {
+        if (response.status === 401) {
+            throw new Error(response.status);
+        }
+        return response.json()
+    }).then(messages => {
+        messages.forEach(message => {
+            const wrapper = document.createElement("div");
+            wrapper.classList.add("message");
 
-                const div = document.createElement("div");
-                if (message.name.toUpperCase() == localStorage.username.toUpperCase()) {
-                    div.classList.add("my-message");
-                } else {
-                    div.classList.add("other-message");
-                }
+            const div = document.createElement("div");
+            if (message.name.toUpperCase() == localStorage.username.toUpperCase()) {
+                div.classList.add("my-message");
+            } else {
+                div.classList.add("other-message");
+            }
 
-                const header = document.createElement("h3");
-                header.textContent = "Me";
+            const header = document.createElement("h3");
+            header.textContent = "Me";
 
-                const messageEle = document.createElement("p");
-                messageEle.classList.add("message-content");
-                messageEle.textContent = message.message;
+            const messageEle = document.createElement("p");
+            messageEle.classList.add("message-content");
+            messageEle.textContent = message.message;
 
-                wrapper.appendChild(div);
-                div.appendChild(header);
-                div.appendChild(messageEle);
+            wrapper.appendChild(div);
+            div.appendChild(header);
+            div.appendChild(messageEle);
 
-                messagesElement.appendChild(wrapper);
-            })
-            loadingEle.style.display = "none";
-        });
+            messagesElement.appendChild(wrapper);
+        })
+        loadingEle.style.display = "none";
+    }).catch(err => {
+        if (err.message == 401) {
+            localStorage.removeItem("token");
+            window.location.href = "./pages/login.html";
+        }
+    });
 }
