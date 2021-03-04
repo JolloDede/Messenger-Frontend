@@ -49,14 +49,14 @@ function listAllMessages() {
                 wrapper.classList.add("message");
 
                 const div = document.createElement("div");
+                const header = document.createElement("h3");
                 if (message.name.toUpperCase() == localStorage.username.toUpperCase()) {
                     div.classList.add("my-message");
+                    header.textContent = "Me";
                 } else {
                     div.classList.add("other-message");
+                    header.textContent = message.name.toString();
                 }
-
-                const header = document.createElement("h3");
-                header.textContent = "Me";
 
                 const messageEle = document.createElement("p");
                 messageEle.classList.add("message-content");
