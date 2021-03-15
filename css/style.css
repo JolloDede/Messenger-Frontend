@@ -169,6 +169,29 @@ form .data input:focus{
     width: 80%;
   }
 
-  .form > button {
-    width: 19%;
+  .send-btn {
+    width: 15%;
+  }
+
+  .clip-btn {
+    width: 4%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Dialog Start */
+
+  .dialog-background {
+    display: none;
+    background-color: rgba(70, 70, 70, 0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .dialog-background > dialog {
+    margin: 0 auto;
+    top: 40%;
   }
