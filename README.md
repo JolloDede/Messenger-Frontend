@@ -82,4 +82,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* I started this code along the [turtorial](https://www.youtube.com/watch?v=JnEH9tYLxLk) of [Coding Garden](https://github.com/CodingGarden).
+* I started this code along the [tutorial](https://www.youtube.com/watch?v=JnEH9tYLxLk) of [Coding Garden](https://github.com/CodingGarden).
+* Thanks [PurpleBooth](https://gist.github.com/PurpleBooth) for her readme [template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
