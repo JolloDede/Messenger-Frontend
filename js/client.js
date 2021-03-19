@@ -2,12 +2,8 @@
 const form = document.querySelector(".form");
 const loadingEle = document.querySelector(".loading");
 const messagesElement = document.querySelector(".messages");
-const clipBtn = document.querySelector("#clip-btn");
 const fileInput = document.querySelector("#file-input");
-const fileDialog = document.querySelector(".file-open-dialog");
-const imgForm = document.querySelector(".img-form");
 const API_URL = "http://localhost:5000/messages";
-const API_UPLOAD = "http://localhost:5000/upload";
 
 listAllMessages();
 
@@ -26,51 +22,25 @@ form.addEventListener("submit", (event) => {
     fetch(API_URL, {
         method: "POST",
         headers: {
-            'Content-Type': 'application/json',
             'authorization': 'Bearer ' + localStorage.token
         },
-        body: JSON.stringify(messageOb)
+        body: formData
     }).then(response => response.json())
         .then(() => {
+            document.querySelector(".up-img").src = "";
             form.reset();
             listAllMessages();
             form.style.display = "";
+        }).catch((err) => {
+            console.log(err);
         });
-});
-
-imgForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    
-    const formData = new FormData(imgForm);
-    const img = formData.get("file-input");
-    const image = document.querySelector("#file-input");
-    const imgOb = {
-        src: image.files[0],
-    };
-    fetch(API_UPLOAD, {
-        method: "POST",
-        headers: {
-            // 'Content-Type': 'multipart/form-data',
-            'authorization': 'Bearer ' + localStorage.token
-        },
-        body: image.files[0]
-    }).then(response => response.json())
-    .then((res) => {
-        console.log(res);
-        document.querySelector(".dialog-background").style.display = "none";
-    })
-});
-
-clipBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    document.querySelector(".dialog-background").style.display = "block";
 });
 
 fileInput.addEventListener("change", (e) => {
     if (fileInput.files.length > 0) {
-        const image = document.createElement('img');
+        const image = document.querySelector('.up-img');
         image.src = URL.createObjectURL(fileInput.files[0]);
-        document.querySelector(".file-open-dialog").appendChild(image);
+        image.style.display = "initial";
     }
 });
 
