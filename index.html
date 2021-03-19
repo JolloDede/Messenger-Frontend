@@ -23,23 +23,18 @@
             <img src="img/loading.gif" alt="">
         </div>
         <div class="messages">
-
+            <!-- Here come the messages -->
         </div>
-        <form class="form">
-            <!-- <label for="message">Message</label> -->
-            <!-- <textarea class="u-full-width" name="message" id="message" cols="30" rows="10"></textarea> -->
-            <input type="text" name="message" id="message" placeholder="Message">
-            <button class="clip-btn" id="clip-btn" type="button">()</button>
-            <button class="button-primary send-btn" type="submit">Send</button>
-        </form>
-
-        <div class="dialog-background">
-            <dialog open class="file-open-dialog">
-                <form class="img-form">
-                    <input type="file" name="file-input" id="file-input">
-                    <button class="button-primary" type="submit" accept="image/*">Send</button>
-                </form>
-            </dialog>
+        <div>
+            <img class="up-img">
+            <form class="form">
+                <input type="text" name="message" id="message" placeholder="Message">
+                <label for="file-input" class="inline-label">
+                    <p class="button clip-btn">()</p>
+                    <input type="file" name="file-input" id="file-input" style="display: none">
+                </label>
+                <button class="button-primary send-btn" type="submit">Send</button>
+            </form>
         </div>
     </main>
     <script src="js/client.js"></script>

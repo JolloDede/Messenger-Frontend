@@ -195,3 +195,13 @@ form .data input:focus{
     margin: 0 auto;
     top: 40%;
   }
+
+  /* Start test */
+
+  .inline-label { 
+    display: inline;
+    }
+
+  .up-img {
+    display: none;
+  }

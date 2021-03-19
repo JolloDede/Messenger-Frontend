@@ -14,3 +14,9 @@
 * [X] redirect to login
 * [ ] show logout if token active
 * [X] dont reverse the messages
+
+### Step
+* [X] fetch apiurl not upload
+* [X] make the fileupload look like whatsup
+    * [X] the button with the file dialog onto main page
+    * [X] onchange image on top of Message input
