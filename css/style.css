@@ -1,5 +1,10 @@
+header {
+  height: 8vh;
+}
+
 .title {
-    text-align: center
+    text-align: center;
+    margin: 0 auto;
 }
 
 .login {
@@ -17,10 +22,11 @@
 
 .messages {
     width: 80%;
+    height: 80vh;
     margin: 0 auto;
-    margin-bottom: 20px;
     background-image: url('../img/Download.jpg');
     padding: 10px;
+    overflow: auto;
 }
 
 .messages > div {
@@ -163,6 +169,7 @@ form .data input:focus{
     bottom: 0;
     width: 80%;
     margin: 0 auto;
+    padding-top: 20px;
   }
 
   .form > input {

@@ -5,16 +5,15 @@ const messagesElement = document.querySelector(".messages");
 const fileInput = document.querySelector("#file-input");
 const API_URL = "http://localhost:5000/messages";
 
+let skip = 0;
+let limit = 10;
+
 listAllMessages();
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const formData = new FormData(form);
-    const message = formData.get("message");
-    const messageOb = {
-        message: message.toString()
-    };
 
     form.style.display = "none";
     loadingEle.style.display = "";
@@ -46,10 +45,9 @@ fileInput.addEventListener("change", (e) => {
 
 function listAllMessages() {
     messagesElement.innerHTML = '';
-    fetch(API_URL, {
+    fetch(API_URL+"?skip="+skip+"limit="+limit, {
         method: "GET",
         headers: {
-            'content-type': 'application/json',
             'authorization': 'Bearer ' + localStorage.token
         }
     }).then(response => {
@@ -57,8 +55,9 @@ function listAllMessages() {
             throw new Error(response.status);
         }
         return response.json()
-    }).then(messages => {
-        messages.forEach(message => {
+    }).then(res => {
+        console.log(res.meta);
+        res.messages.forEach(message => {
             const wrapper = document.createElement("div");
             wrapper.classList.add("message");
             const div = document.createElement("div");
