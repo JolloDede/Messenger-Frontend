@@ -45,7 +45,7 @@ fileInput.addEventListener("change", (e) => {
 
 function listAllMessages() {
     messagesElement.innerHTML = '';
-    fetch(API_URL+"?skip="+skip+"limit="+limit, {
+    fetch(API_URL, {
         method: "GET",
         headers: {
             'authorization': 'Bearer ' + localStorage.token
@@ -56,8 +56,7 @@ function listAllMessages() {
         }
         return response.json()
     }).then(res => {
-        console.log(res.meta);
-        res.messages.forEach(message => {
+        res.forEach(message => {
             const wrapper = document.createElement("div");
             wrapper.classList.add("message");
             const div = document.createElement("div");
