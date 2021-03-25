@@ -20,3 +20,9 @@
 * [X] make the fileupload look like whatsup
     * [X] the button with the file dialog onto main page
     * [X] onchange image on top of Message input
+
+
+### Step
+* [ ] react the whole thing
+### Step
+* [ ] Socketio anstatt fetching
