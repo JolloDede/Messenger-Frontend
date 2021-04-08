@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import sendingSrc from "./img/loading.gif";
-import "./messageForm.css";
+import sendingSrc from "../img/loading.gif";
 
-function NewMessage() {
-  const API_URL = "http://localhost:5000/messages";
+function NewMessage({ token, setNewMsg }) {
   const [text, setText] = useState("");
   const [sending, setSending] = useState(false);
 
@@ -13,15 +11,16 @@ function NewMessage() {
 
     let formData = new FormData();
     formData.append("message", text);
-
+    const API_URL = "http://localhost:5000/messages";
     fetch(API_URL, {
       method: "POST",
       headers: {
-        'authorization': 'Bearer ' + localStorage.token
+        'authorization': 'Bearer ' + token
       },
       body: formData
     }).then(response => response.json())
-      .then(() => {
+      .then((createdMsg) => {
+        setNewMsg(true);
         setText("");
         setSending(false);
       }).catch((err) => {
@@ -37,6 +36,7 @@ function NewMessage() {
       // save img
     }
   }
+
   if (sending) {
     return (
       <img src={sendingSrc} alt="sending"/>
