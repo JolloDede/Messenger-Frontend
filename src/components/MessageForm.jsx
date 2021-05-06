@@ -1,39 +1,63 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import sendingSrc from "../img/loading.gif";
+import { Button, makeStyles, TextField } from "@material-ui/core";
+import { SocketContext } from '../context/socket';
+import { API_URL } from "../config.json";
 
-function NewMessage({ token, setNewMsg }) {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: "5%",
+  },
+  field: {
+    width: "90%",
+  },
+  buton: {
+    width: "10%",
+    height: "6vh",
+  }
+}));
+
+function NewMessage({ setToken, token }) {
   const [text, setText] = useState("");
   const [sending, setSending] = useState(false);
+  const classes = useStyles();
+  const socket = useContext(SocketContext);
 
-  const handleSubmit = (e) => {
+  /**
+   * fetching the data to the server and then send it with socketio
+   * @param {Event} e 
+   */
+  function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
 
     let formData = new FormData();
     formData.append("message", text);
-    const API_URL = "http://localhost:5000/messages";
     fetch(API_URL, {
       method: "POST",
       headers: {
         'authorization': 'Bearer ' + token
       },
       body: formData
-    }).then(response => response.json())
+    }).then(response => {
+      if (response.status === 401) {
+        setToken(null);
+        throw new Error(response)
+      }
+      return response.json()
+    })
       .then((createdMsg) => {
-        setNewMsg(true);
+        socket.emit("message", createdMsg);
         setText("");
         setSending(false);
       }).catch((err) => {
         console.log(err);
       });
   }
-  const handleInputChange = (e) => {
+  function handleInputChange(e) {
     const target = e.target;
     if (target.type === "text") {
       setText(target.value);
-    }
-    if (target.type === "file") {
-      // save img
     }
   }
 
@@ -43,24 +67,18 @@ function NewMessage({ token, setNewMsg }) {
     );
   }else {
   return (
-    <form onSubmit={handleSubmit} className="msg-form">
-      <input
-        type="text"
-        name="message"
-        id="message"
+    <form onSubmit={handleSubmit} className={classes.root}>
+      <TextField
+        label="type your message"
+        variant="filled"
+        name="username"
         onChange={handleInputChange}
         value={text}
+        required
+        className={classes.field}
       />
-      <label htmlFor="file-input">
-        <p className="button clip-btn">()</p>
-        <input
-          type="file"
-          name="file-input"
-          id="file-input"
-          style={{ display: "none" }}
-        />
-      </label>
-      <button type="submit" className="send-btn">Send</button>
+
+      <Button type="submit" variant="contained" className={classes.buton}>Send</Button>
     </form>
   );
   }
