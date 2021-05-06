@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import sendingSrc from "../img/loading.gif";
 import { Button, makeStyles, TextField } from "@material-ui/core";
 import { SocketContext } from '../context/socket';
+import { API_URL } from "../config.json";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +33,6 @@ function NewMessage({ setToken, token }) {
 
     let formData = new FormData();
     formData.append("message", text);
-    const API_URL = "http://localhost:5000/messages";
     fetch(API_URL, {
       method: "POST",
       headers: {
@@ -58,9 +58,6 @@ function NewMessage({ setToken, token }) {
     const target = e.target;
     if (target.type === "text") {
       setText(target.value);
-    }
-    if (target.type === "file") {
-      // save img
     }
   }
 
