@@ -23,6 +23,9 @@
 
 
 ### Step
-* [ ] react the whole thing
+* [X] react the whole thing
 ### Step
-* [ ] Socketio anstatt fetching
+* [X] Socketio with fetching
+
+### Material step
+* [X] make the thing look beautyful
