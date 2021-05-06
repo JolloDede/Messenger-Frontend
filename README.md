@@ -4,7 +4,7 @@ This is the web-frontend of my selfmade Messenger who works in a way like Twitte
 
 ## Getting Started
 
-Clone this repository and [this](https://github.com/JolloDede/Messenger-Backend) one in seperate folders. For this Project just open the [index.html](index.html). For the backend go to the repo and follow the instructions there to get it running.
+Clone this repository and [this](https://github.com/JolloDede/Messenger-Backend) one in seperate folders. For this Project follow the installation section. For the backend go to the repo and follow the instructions there to get it running.
 
 <!-- ### Prerequisites
 
@@ -24,7 +24,19 @@ Clone the repository on your machine
 git clone https://github.com/JolloDede/Messenger-Frontend
 ```
 
-And open the [index.html](index.html) in your Browser
+cd into the directory and install the packages
+
+```
+npm i
+```
+
+start the dev server
+
+```
+npm run start
+```
+
+Configure the config file that it Points to your [server](https://github.com/JolloDede/Messenger-Backend) instance
 
 <!-- ```
 until finished
@@ -55,10 +67,14 @@ Give an example
 ## Deployment
 
 If you whant to deploy that at your home use a static Fileserver for this repo like [nginx](https://nginx.org/en/).
+Not yet done myself.
 
 ## Built With
 
-* [plain Javascript] - The web framework used
+* [react](https://reactjs.org/) - The web framework used
+* [socketio](https://socket.io/) - The realtime communication library
+* [nodejs](https://nodejs.org/en/) - Dependency Manager
+* [material-ui](https://material-ui.com/) - UI library
 <!-- * [Maven](https://maven.apache.org/) - Dependency Management
 * [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds -->
 
