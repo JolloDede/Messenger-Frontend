@@ -1,4 +1,5 @@
 import { Button, makeStyles, TextField } from "@material-ui/core";
+import { LOGIN_API_URL } from "../config.json";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,13 +18,12 @@ function Login({ setToken, setUsername }) {
   function submitHandle(e) {
     e.preventDefault();
 
-    const API_URL = "http://localhost:5000/auth/login";
     const formData = new FormData(e.target);
     const auth = {
       username: formData.get("username"),
       password: formData.get("password"),
     }
-    fetch(API_URL, {
+    fetch(LOGIN_API_URL, {
       method: "POST",
       body: JSON.stringify(auth),
       headers: {
@@ -35,6 +35,7 @@ function Login({ setToken, setUsername }) {
       }
       return res.json();
     }).then((result) => {
+      console.log(result);
       setToken(result.token);
       setUsername(result.username);
     }).catch(err => {
