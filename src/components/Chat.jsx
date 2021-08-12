@@ -4,19 +4,28 @@ import Login from "./Login";
 import useLocalStorage from '../hooks/useLocalStorage';
 import { useEffect, useContext } from "react";
 import { Box, makeStyles } from "@material-ui/core";
-import { SocketContext } from "../context/socket";
+import { SocketContext } from "../contexts/socket";
+import Sidebar from "./Sidebar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "80%",
-    margin: "0 auto",
+    width: "100%",
     height: "100vh",
   },
+  login: {
+    width: "80%",
+    margin: "0 auto",
+  },
+  chatContent: {
+    width: "70%",
+    display: "inline-block",
+  }
 }));
 
-function Chat(props) {
+function Chat() {
   const [token, setToken] = useLocalStorage("token");
   const [username, setUsername] = useLocalStorage("username");
+  const [id, setId] = useLocalStorage("id");
   const [messages, setMessages] = useLocalStorage("messages", []);
   const classes = useStyles();
   const socket = useContext(SocketContext);
@@ -42,17 +51,26 @@ function Chat(props) {
     // eslint-disable-next-line
   }, [socket]);
 
+  return (
+    <Box>
+      <Sidebar />
+    </Box>
+  );
+
   if (token !== null) {
     return (
       <Box className={classes.root}>
-        <Messages username={username} messages={messages} />
-        <NewMessage setToken={setToken} token={token} />
+        <Sidebar id={id} />
+        <Box className={classes.chatContent}>
+          <Messages username={username} messages={messages} />
+          <NewMessage setToken={setToken} token={token} />
+        </Box>
       </Box>
     );
   } else {
     return (
-      <Box>
-        <Login setToken={setToken} setUsername={setUsername} />
+      <Box className={classes.login}>
+        <Login setId={setId} setToken={setToken} setUsername={setUsername} />
       </Box>
     );
   }
