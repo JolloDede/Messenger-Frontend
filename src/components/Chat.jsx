@@ -54,6 +54,7 @@ function Chat() {
   return (
     <Box>
       <Sidebar />
+      
     </Box>
   );
 
