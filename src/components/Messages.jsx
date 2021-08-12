@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
   messages: {
     backgroundImage: `url(${bgSrc})`,
     overflow: "auto",
-    height: "90%",
+    height: "90vh",
     marginBottom: "10px",
   },
 }));

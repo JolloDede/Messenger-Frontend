@@ -1,5 +1,5 @@
 {
-  "Socket_API_URL": "http://localhost:5000",
-  "API_URL": "http://localhost:5000/messages",
-  "LOGIN_API_URL": "http://localhost:5000/auth/login"
+  "Socket_API_URL": "http://10.1.10.102:5000",
+  "API_URL": "http://10.1.10.102:5000/messages",
+  "LOGIN_API_URL": "http://10.1.10.102:5000/auth/login"
 }

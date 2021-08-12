@@ -29,3 +29,12 @@
 
 ### Material step
 * [X] make the thing look beautyful
+
+### Contacts
+* [X] create Contacts
+* [X] list contacts
+
+### Conversations
+* [X] create conversations
+* [X] list conversations
+* [ ] list messages from conversation on the page

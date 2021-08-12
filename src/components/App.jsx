@@ -1,11 +1,17 @@
-import { socket, SocketContext } from "../context/socket";
+import { ContactsProvider } from "../contexts/ContactsProvider";
+import { ConversationProvider } from "../contexts/ConversationProvider";
+import { socket, SocketContext } from "../contexts/socket";
 import Chat from "./Chat";
 
-function App(props) {
-  
+function App() {
+
   return (
     <SocketContext.Provider value={socket}>
-      <Chat></Chat>
+      <ContactsProvider>
+        <ConversationProvider>
+          <Chat></Chat>
+        </ConversationProvider>
+      </ContactsProvider>
     </SocketContext.Provider>
   );
 }

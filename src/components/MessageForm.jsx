@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import sendingSrc from "../img/loading.gif";
 import { Button, makeStyles, TextField } from "@material-ui/core";
-import { SocketContext } from '../context/socket';
+import { SocketContext } from '../contexts/socket';
 import { API_URL } from "../config.json";
 
 const useStyles = makeStyles((theme) => ({
