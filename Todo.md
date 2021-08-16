@@ -37,4 +37,4 @@
 ### Conversations
 * [X] create conversations
 * [X] list conversations
-* [ ] list messages from conversation on the page
+* [X] list messages from conversation on the page

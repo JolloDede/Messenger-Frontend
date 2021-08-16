@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Login({ setToken, setUsername, setId }) {
+function Login({ setToken, setId }) {
   const classes = useStyles();
 
   function submitHandle(e) {
@@ -36,7 +36,6 @@ function Login({ setToken, setUsername, setId }) {
       return res.json();
     }).then((result) => {
       setToken(result.token);
-      setUsername(result.username);
       setId(result.id);
     }).catch(err => {
       e.target.reset();

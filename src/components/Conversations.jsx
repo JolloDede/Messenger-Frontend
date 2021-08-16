@@ -10,9 +10,7 @@ export default function Conversations() {
       {conversations.map((conversation, index) => (
         <ListItem
           key={index}
-          action
           onClick={() => selectConversation(index)}
-          active={conversation.selected}
         >
           {conversation.recipients.map(r => r.name).join(', ')}
         </ListItem>

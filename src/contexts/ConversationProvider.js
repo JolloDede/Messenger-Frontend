@@ -56,7 +56,7 @@ export function ConversationProvider({ id, children }) {
     return () => socket.off('receive-message');
   }, [socket, addMessageToConversation]);
 
-  function sendMessage({ recipients, text }) {
+  function sendMessage( recipients, text ) {
     socket.emit('send-message', { recipients, text });
 
     addMessageToConversation({ recipients, text, sender: id })
@@ -87,6 +87,7 @@ export function ConversationProvider({ id, children }) {
 
   const value = {
     conversations: formattedConversations,
+    selectedConversation: formattedConversations[selectedConversation],
     createConversation,
     selectConversation: setSelectedConversation,
     sendMessage
