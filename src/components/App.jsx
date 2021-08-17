@@ -13,7 +13,7 @@ function App() {
   return (
     <SocketContext.Provider value={socket}>
       <ContactsProvider>
-        <ConversationProvider>
+        <ConversationProvider id={id}>
           <Chat id={id} ></Chat>
         </ConversationProvider>
       </ContactsProvider>

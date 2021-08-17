@@ -1,11 +1,43 @@
-import { Box } from "@material-ui/core";
+import { Box, Button, makeStyles, TextField } from "@material-ui/core";
 import { useCallback } from "react";
 import { useState } from "react";
 import { useConversations } from "../contexts/ConversationProvider";
 
-export default function OpenConversation() {
+const useStyles = makeStyles((theme) => ({
+  messageContainer: {
+    height: "90vh",
+    top: 0,
+  },
+  message: {
+    margin: "5px auto",
+    padding: "10px",
+    borderRadius: "4px",
+    minHeight: "20px",
+    overflow: "auto",
+    maxWidth: "90%",
+    minWidth: "20%",
+  },
+  myMessage: {
+    backgroundColor: "green",
+    marginRight: 0,
+    width: "fit-content",
+  },
+  otherMessage: {
+    backgroundColor: "grey",
+  },
+  messageContent: {
+    lineBreak: "auto",
+    wordBreak: "break-all",
+  },
+  form: {
+    height: "10vh",
+  }
+}));
+
+export default function OpenConversation({ style }) {
   const [text, setText] = useState("");
   const { sendMessage, selectedConversation } = useConversations();
+  const classes = useStyles();
   const setRef = useCallback(node => {
     if (node) {
       node.scrollIntoView({ smooth: true })
@@ -23,37 +55,39 @@ export default function OpenConversation() {
   }
 
   return (
-    <Box>
-      <div>
+    <Box className={style}>
+      <Box className={classes.messageContainer}>
         {selectedConversation.messages.map((message, index) => {
           const lastMessage = selectedConversation.messages.length - 1 === index
           return (
-            <div
+            <Box
               ref={lastMessage ? setRef : null}
               key={index}
-            // className={`my-1 d-flex flex-column ${message.fromMe ? 'align-self-end align-items-end' : 'align-items-start'}`}
+              className={[classes.message, message.fromMe ? classes.myMessage : classes.otherMessage].join(" ")}
             >
-              <div
-              // className={`rounded px-2 py-1 ${message.fromMe ? 'bg-primary text-white' : 'border'}`}
-              >
-                {message.text}
-              </div>
-              <div 
-                // className={`text-muted small ${message.fromMe ? 'text-right' : ''}`}
+              <Box
+              // className={`text-muted small ${message.fromMe ? 'text-right' : ''}`}
               >
                 {message.fromMe ? 'You' : message.senderName}
-              </div>
-            </div>
+              </Box>
+              <Box
+                className={classes.messageContent}
+              >
+                {message.text}
+              </Box>
+            </Box>
           )
         })}
-      </div>
-      <form onSubmit={handleSubmit}>
-        <textarea
+      </Box>
+      <form onSubmit={handleSubmit} className={classes.form}>
+        <TextField
+          variant="outlined"
+          multiline
           required
           value={text}
           onChange={e => setText(e.target.value)}
         />
-        <button type="submit">Send</button>
+        <Button type="submit" variant="contained" color="primary">Send</Button>
       </form>
     </Box>
   );

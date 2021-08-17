@@ -6,13 +6,8 @@ import Conversations from "./Conversations";
 import NewConversationModal from "./NewConversationModal";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "30%",
-    display: "inline-block",
-    height: "100vh",
-  },
   sidebarContent: {
-    height: "90vh",
+    height: "85vh",
     display: "inline-block",
     overflow: "auto",
   },
@@ -25,9 +20,12 @@ const useStyles = makeStyles((theme) => ({
     border: "2px solid black",
     borderRadius: "20px",
   },
+  newButton: {
+    width: "100%",
+  },
 }));
 
-export default function Sidebar({ id }) {
+export default function Sidebar({ id, style }) {
   const [active, setActive] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const classes = useStyles();
@@ -42,7 +40,7 @@ export default function Sidebar({ id }) {
   }
 
   return (
-    <Box className={classes.root}>
+    <Box className={style}>
       <Box>
         <AppBar position="static">
           <Tabs value={active} onChange={handleChange}>
@@ -53,7 +51,7 @@ export default function Sidebar({ id }) {
         <Box className={classes.sidebarContent}>
           {conversationsOpen ? <Conversations /> : <Contacts />}
         </Box>
-        <Button onClick={() => setModalOpen(true)} variant="contained" color="primary">
+        <Button onClick={() => setModalOpen(true)} variant="contained" color="primary" className={classes.newButton}>
           New {conversationsOpen ? "Conversation" : "Contact"}
         </Button>
         <p>{id}</p>

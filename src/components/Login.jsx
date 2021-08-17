@@ -1,10 +1,12 @@
-import { Button, makeStyles, TextField } from "@material-ui/core";
+import { Box, Button, makeStyles, TextField, Typography } from "@material-ui/core";
 import { LOGIN_API_URL } from "../config.json";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "80%",
     margin: "0 auto",
+  },
+  form: {
     paddingTop: "10%",
   },
   field: {
@@ -44,32 +46,43 @@ function Login({ setToken, setId }) {
   }
 
   return (
-    <form onSubmit={submitHandle} className={classes.root} autoComplete="off">
-      <TextField
-        id="outlined-basic"
-        label="Username"
-        variant="outlined"
-        fullWidth={true}
-        name="username"
-        className={classes.field}
-        required
-      />
+    <Box>
+      <Typography variant="h1" className={classes.root}>
+        Login
+      </Typography>
+      <form onSubmit={submitHandle} className={classes.root + " " + classes.form} autoComplete="off">
+        <TextField
+          id="outlined-basic"
+          label="Username"
+          variant="outlined"
+          fullWidth={true}
+          name="username"
+          className={classes.field}
+          required
+        />
 
-      <TextField
-        id="standard-password-input"
-        label="Password"
-        type="password"
-        autoComplete="current-password"
-        variant="outlined"
-        fullWidth={true}
-        name="password"
-        className={classes.field}
-        required
-      />
+        <TextField
+          id="standard-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          variant="outlined"
+          fullWidth={true}
+          name="password"
+          className={classes.field}
+          required
+        />
 
-      <Button type="submit" variant="contained" color="primary">Login</Button>
-      <p>Not a member? <a href="/#">Signup now</a></p>
-    </form>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+        >
+          Login
+        </Button>
+        <p>Not a member? <a href="/#">Signup now</a></p>
+      </form>
+    </Box>
   );
 }
 
