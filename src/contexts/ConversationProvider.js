@@ -20,8 +20,6 @@ export function ConversationProvider({ id, children }) {
 
   function createConversation(recipients) {
     setConversations(prevConversation => {
-      console.log(prevConversation);
-      console.log({ recipients, messages: [] });
       return [...prevConversation, { recipients, messages: [] }]
     })
   }
@@ -53,7 +51,7 @@ export function ConversationProvider({ id, children }) {
 
     socket.on('recieve-message', addMessageToConversation);
 
-    return () => socket.off('receive-message');
+    return () => socket.off('recieve-message');
   }, [socket, addMessageToConversation]);
 
   function sendMessage( recipients, text ) {
