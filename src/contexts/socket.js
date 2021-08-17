@@ -1,7 +1,29 @@
 import { io } from "socket.io-client";
-import { createContext } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { Socket_API_URL } from "../config.json";
 
-export const socket = io(Socket_API_URL)
+const SocketContext = createContext();
 
-export const SocketContext = createContext();
+export function useSocket() {
+  return useContext(SocketContext);
+}
+
+export function SocketProvider({ id, children }) {
+  const [socket, setSocket] = useState();
+
+  useEffect(() => {
+    const newSocket = io(
+      Socket_API_URL,
+      { query: { id } }
+    );
+    setSocket(newSocket);
+
+    return () => newSocket.close();
+  }, [id]);
+
+  return (
+    <SocketContext.Provider value={socket}>
+      {children}
+    </SocketContext.Provider>
+  )
+}

@@ -38,3 +38,5 @@
 * [X] create conversations
 * [X] list conversations
 * [X] list messages from conversation on the page
+
+* [X] create a socket that has your id

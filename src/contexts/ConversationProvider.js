@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { useContacts } from "./ContactsProvider";
-import { SocketContext } from "./socket";
+import { useSocket } from "./socket";
 
 
 const ConversationsContext = React.createContext();
@@ -16,7 +16,7 @@ export function ConversationProvider({ id, children }) {
   const [conversations, setConversations] = useLocalStorage('conversations', []);
   const [selectedConversation, setSelectedConversation] = useState(0);
   const { contacts } = useContacts();
-  const socket = useContext(SocketContext);
+  const socket = useSocket();
 
   function createConversation(recipients) {
     setConversations(prevConversation => {
