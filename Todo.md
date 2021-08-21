@@ -40,3 +40,6 @@
 * [X] list messages from conversation on the page
 
 * [X] create a socket that has your id
+
+* [ ] learn how to use branches the right way
+  * [ ] https://nvie.com/posts/a-successful-git-branching-model/  
