@@ -1,4 +1,4 @@
-# Mesenger
+# Messenger
 
 This is the web-frontend of my selfmade Messenger who works in a way like Twitter.
 
