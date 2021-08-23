@@ -1,3 +1,4 @@
+import { Grid } from "@material-ui/core";
 import { ContactsProvider } from "../contexts/ContactsProvider";
 import { ConversationProvider } from "../contexts/ConversationProvider";
 import { SocketProvider } from "../contexts/socket";
@@ -10,16 +11,18 @@ function App() {
   const [id, setId] = useLocalStorage("id");
 
   if (token !== null) {
-  return (
-    <SocketProvider id={id}>
-      <ContactsProvider>
-        <ConversationProvider id={id}>
-          <Chat id={id} ></Chat>
-        </ConversationProvider>
-      </ContactsProvider>
-    </SocketProvider>
-  );
-  }else {
+    return (
+      <SocketProvider id={id}>
+        <ContactsProvider>
+          <ConversationProvider id={id}>
+            <Grid container direction="row">
+              <Chat id={id} ></Chat>
+            </Grid>
+          </ConversationProvider>
+        </ContactsProvider>
+      </SocketProvider>
+    );
+  } else {
     return (
       <Login setToken={setToken} setId={setId} />
     );

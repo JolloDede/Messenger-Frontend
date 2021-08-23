@@ -30,7 +30,13 @@ const useStyles = makeStyles((theme) => ({
     wordBreak: "break-all",
   },
   form: {
-    height: "10vh",
+    // height: "10vh",
+  },
+  formBtn: {
+    width: "10%",
+  },
+  textField: {
+    width: "90%",
   }
 }));
 
@@ -81,13 +87,14 @@ export default function OpenConversation({ style }) {
       </Box>
       <form onSubmit={handleSubmit} className={classes.form}>
         <TextField
+          className={classes.textField}
           variant="outlined"
           multiline
           required
           value={text}
           onChange={e => setText(e.target.value)}
         />
-        <Button type="submit" variant="contained" color="primary">Send</Button>
+        <Button className={classes.formBtn} type="submit" variant="contained" color="primary">Send</Button>
       </form>
     </Box>
   );
